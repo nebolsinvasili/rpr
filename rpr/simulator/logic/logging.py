@@ -9,7 +9,7 @@ def data_A(data, rpr, ref=None):
     if ref is not None:
         for i, xyz in enumerate(ref.ground.joints):
             for axis, value in zip("xyz", xyz):
-                data.update({f"A{i+1}ref_{axis}": value})
+                  data.update({f"A{i+1}ref_{axis}": value})
 
     for i, xyz in enumerate(rpr.ground.joints):
         for axis, value in zip("xyz", xyz):
@@ -23,7 +23,7 @@ def data_B(data, rpr, ref=None):
         for i, value in enumerate(
             Platform.distance_attact_joints(ref.platform.coord, ref.platform.joints)
         ):
-            data.update({f"B{i+1}ref_dj": value})
+             data.update({f"B{i+1}ref_dj": value})
 
         for i, value in enumerate(
             Platform.angle_attact_joints(ref.platform.coord, ref.platform.joints)
@@ -33,6 +33,7 @@ def data_B(data, rpr, ref=None):
         for i, xyz in enumerate(ref.platform.joints):
             for axis, value in zip("xyz", xyz):
                 data.update({f"B{i+1}ref_{axis}": value})
+
 
     for i, value in enumerate(
         Platform.distance_attact_joints(rpr.platform.coord, rpr.platform.joints)
@@ -60,19 +61,19 @@ def data_leg(data, rpr, ref=None):
         ):
             data.update({f"Ld_{i+1}ref": distance})
 
-        for i, angle in enumerate(
-            Leg.get_angle_leg(
-                ground_joints=ref.ground.joints, platform_joints=ref.platform.joints
-            )
-        ):
-            data.update({f"La_{i+1}ref": angle})
+    for i, angle in enumerate(
+        Leg.get_angle_leg(
+            ground_joints=ref.ground.joints, platform_joints=ref.platform.joints
+        )
+    ):
+        data.update({f"La_{i+1}ref": angle})
 
     for i, distance in enumerate(
         Leg.get_distance_legs(
             ground_joints=rpr.ground.joints, platform_joints=rpr.platform.joints
         )
     ):
-        data.update({f"Ld_{i+1}": distance})
+       data.update({f"Ld_{i+1}": distance})
 
     for i, angle in enumerate(
         Leg.get_angle_leg(
@@ -87,7 +88,7 @@ def data_leg(data, rpr, ref=None):
 def data_out(data, rpr):
     for axis, value in zip("xyz", rpr.platform.coord):
         data.update({f"{axis}": value})
-    data.update({"fi": rpr.platform.angle[2]})
+        data.update({"fi": rpr.platform.angle[2]})
 
     return data
 
