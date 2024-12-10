@@ -58,9 +58,9 @@ class ModelTrainer:
         # Initialize the interactive mode for plotting
         plt.ion()
         self.fig, self.axs = (
-            plt.subplots(1, 2, figsize=(8, 3))
+            plt.subplots(1, len(self.metrics)+1, figsize=((len(self.metrics)+1)*8, 5))
             if self.metrics
-            else plt.subplots(1, 1, figsize=(5, 3))
+            else plt.subplots(1, 1, figsize=(8, 5))
         )
 
     def fit(
