@@ -2,8 +2,8 @@ import torch
 from torch import nn, optim
 from torchsummary import summary
 
-from ..metrics import accuracy
-
+from ..metrics import mean_absolute_error, mean_squared_error
+from ..trainer import ModelTrainer
 from .data import (
     X_test,
     X_train,
@@ -13,7 +13,6 @@ from .data import (
     y_valid,
 )
 from .model import L1
-from ..trainer import ModelTrainer
 
 print(torch.__version__)
 
@@ -39,13 +38,18 @@ trainer = ModelTrainer(
     model=model,
     loss_fn=MSE,
     optimizer=optimizer,
-    metrics={"accuracy": accuracy},
+    metrics={
+        "mean_absolute_error": mean_absolute_error,
+        "mean_squared_error": mean_squared_error,
+    },
     stoping=True,
     device=device,
     model_name=name,
     save_path=rf"rpr\models\{name}",
-    lr_patience=5, lr_threshold=1e-3, 
-    stop_delta=0.075, stop_patience=10
+    lr_patience=5,
+    lr_threshold=1e-3,
+    stop_delta=0.075,
+    stop_patience=10,
 )
 trainer.fit(
     train_data=(X_train, y_train),
