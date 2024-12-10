@@ -37,7 +37,7 @@ class EarlyStopping:
 
 
 class ModelTrainer:
-    def __init__(self, model, model_name, save_path, loss_fn, optimizer, device, metrics=None, stoping: bool = False):
+    def __init__(self, model, model_name, save_path, loss_fn, optimizer, device, metrics=None, stoping: bool = False, lr_patience=5, lr_threshold=1e-3, stop_delta=0.5, stop_patience=10):
         self.model = model
         self.loss_fn = loss_fn
         self.optimizer = optimizer
@@ -51,9 +51,9 @@ class ModelTrainer:
         self.model_name = model_name
         self.save_path = save_path
         
-        self.scheduler = ReduceLROnPlateau(self.optimizer, mode='min', factor=0.1, patience=5, threshold=1e-3)
+        self.scheduler = ReduceLROnPlateau(self.optimizer, mode='min', factor=0.1, patience=lr_patience, threshold=lr_threshold)
         
-        self.early_stopping = EarlyStopping(min_delta=0.5, patience=10) if stoping else None
+        self.early_stopping = EarlyStopping(min_delta=stop_delta, patience=stop_patience) if stoping else None
 
         # Initialize the interactive mode for plotting
         plt.ion()
