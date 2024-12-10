@@ -1,6 +1,6 @@
 import torch
 from torch import nn
-from ..data import X_test, y_test
+from .data import X_test, y_test
 
 print(torch.__version__)
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
