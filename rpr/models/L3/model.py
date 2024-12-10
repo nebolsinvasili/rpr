@@ -4,8 +4,8 @@ import torch.nn.functional as F
 class L3(nn.Module):
     def __init__(self):
         super(L3, self).__init__()
-        self.layer_1 = nn.Linear(in_features=3, out_features=30)
-        self.layer_2 = nn.Linear(in_features=30, out_features=210)
+        self.layer_1 = nn.Linear(in_features=3, out_features=60)
+        self.layer_2 = nn.Linear(in_features=60, out_features=210)
         self.layer_3  = nn.Linear(in_features=210, out_features=1)
 
     def forward(self, x):
