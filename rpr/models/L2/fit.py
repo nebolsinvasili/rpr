@@ -44,6 +44,8 @@ trainer = ModelTrainer(
     device=device,
     model_name=name,
     save_path=rf"rpr\models\{name}",
+    lr_patience=3, lr_threshold=1e-3, 
+    stop_delta=0.05, stop_patience=10
 )
 trainer.fit(
     train_data=(X_train, y_train),
