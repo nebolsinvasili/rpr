@@ -59,7 +59,7 @@ def points(
     limit=[0, 180],
     R=100,
     r=25,
-    n=100,
+    n=10000,
     Llim=[10, 190],
 ):
     unique_coord = []
